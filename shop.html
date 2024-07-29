@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Your Brand</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="logo.png" type="image/png">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="logo">
+                <img src="logo.png" alt="Your Brand Logo" class="logo-img">
+                Your Brand
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                </ul>
+            </nav>
+            <div class="cart">
+                <a href="#" class="cart-icon" onclick="toggleCart()"><img src="cart.png" alt="Cart"></a>
+            </div>
+        </header>
+        <main>
+            <section class="products">
+                <div class="product-card">
+                    <img src="product1.jpg" alt="Product 1">
+                    <h2>Product 1</h2>
+                    <p>$99.99</p>
+                    <button onclick="addToCart('Product 1', 99.99)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="product2.jpg" alt="Product 2">
+                    <h2>Product 2</h2>
+                    <p>$89.99</p>
+                    <button onclick="addToCart('Product 2', 89.99)">Add to Cart</button>
+                </div>
+                <!-- Additional products -->
+                <div class="product-card">
+                    <img src="product3.jpg" alt="Product 3">
+                    <h2>Product 3</h2>
+                    <p>$79.99</p>
+                    <button onclick="addToCart('Product 3', 79.99)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="product4.jpg" alt="Product 4">
+                    <h2>Product 4</h2>
+                    <p>$49.99</p>
+                    <button onclick="addToCart('Product 4', 49.99)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="product5.jpg" alt="Product 5">
+                    <h2>Product 5</h2>
+                    <p>$39.99</p>
+                    <button onclick="addToCart('Product 5', 39.99)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="product6.jpg" alt="Product 6">
+                    <h2>Product 6</h2>
+                    <p>$29.99</p>
+                    <button onclick="addToCart('Product 6', 29.99)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="product7.jpg" alt="Product 7">
+                    <h2>Product 7</h2>
+                    <p>$19.99</p>
+                    <button onclick="addToCart('Product 7', 19.99)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="product8.jpg" alt="Product 8">
+                    <h2>Product 8</h2>
+                    <p>$59.99</p>
+                    <button onclick="addToCart('Product 8', 59.99)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="product9.jpg" alt="Product 9">
+                    <h2>Product 9</h2>
+                    <p>$69.99</p>
+                    <button onclick="addToCart('Product 9', 69.99)">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="product10.jpg" alt="Product 10">
+                    <h2>Product 10</h2>
+                    <p>$89.99</p>
+                    <button onclick="addToCart('Product 10', 89.99)">Add to Cart</button>
+                </div>
+                <!-- Repeat product-card for other products -->
+            </section>
+        </main>
+        <footer>
+            <div class="footer-content">
+                <img src="logo.png" alt="Your Brand Logo" class="footer-logo">
+                <div class="footer-columns">
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">We Are D2Enterprise</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Our Vision and Mission</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Shipping & Returns Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <a href="https://api.whatsapp.com/send?phone=9042931398&text=" class="whatsapp-float" target="_blank">
+            <img src="whatsapp.png" alt="WhatsApp">
+        </a>
+        <!-- Sidebar Cart -->
+        <div id="cart-sidebar" class="cart-sidebar">
+            <button class="close-btn" onclick="closeCart()">X</button>
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <button id="buy-now" onclick="buyNow()">Buy Now</button>
+        </div>
+        <!-- Notification -->
+        <div id="notification" class="notification"></div>
+    </div>
+    <script>
+        let cart = [];
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            displayCart();
+            
+            const notification = document.getElementById('notification');
+            notification.innerHTML = `Product '${productName}' has been added to your cart.`;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000); // Hide after 3 seconds
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            displayCart();
+        }
+
+        function displayCart() {
+            const cartContainer = document.getElementById('cart-items');
+            cartContainer.innerHTML = '';
+            cart.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `${item.name} - $${item.price} <button onclick="removeFromCart(${index})">Remove</button>`;
+                cartContainer.appendChild(div);
+            });
+        }
+
+        function buyNow() {
+            const name = prompt('Enter your name:');
+            const address = prompt('Enter your address:');
+            const phone = prompt('Enter your phone number:');
+            if (name && address && phone) {
+                const productDetails = cart.map(item => `${item.name} ($${item.price})`).join(', ');
+                const message = `Name: ${name}\nAddress: ${address}\nPhone: ${phone}\nProducts: ${productDetails}`;
+                const whatsappUrl = `https://api.whatsapp.com/send?phone=+919042931398&text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+                cart = []; // Clear cart after purchase
+                displayCart();
+            }
+        }
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('show');
+        }
+
+        function closeCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.remove('show');
+        }
+    </script>
+</body>
+</html>
