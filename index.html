@@ -100,6 +100,26 @@
         <div id="notification" class="notification"></div>
     </div>
     <script>
+       
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyC_7Fi3aMsOgKWFRaRtZbSlOAmCl6NSATc",
+        authDomain: "d2enterprices.firebaseapp.com",
+        databaseURL: "https://d2enterprices-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "d2enterprices",
+        storageBucket: "d2enterprices.appspot.com",
+        messagingSenderId: "148686257825",
+        appId: "1:148686257825:web:59b9c7ff26690658ecfae0",
+        measurementId: "G-TTKC4ESDYY"
+      };
+
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore(app);
+      const storage = firebase.storage(app);
+
+      // Add JavaScript code for CRUD operations here
+    
         let cart = [];
 
         function addToCart(productName, productPrice) {
