@@ -9,74 +9,37 @@ if (!name || !address || !phone) {
     alert("Please complete all fields.");
     return;
 }
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js";
+const images = [
+    "sambar-96-256.img",
+    "anotherproduct-120-342.img",
+    "productname-50-123.img"
+];
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyC_7Fi3aMsOgKWFRaRtZbSlOAmCl6NSATc",
-    authDomain: "d2enterprices.firebaseapp.com",
-    databaseURL: "https://d2enterprices-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "d2enterprices",
-    storageBucket: "d2enterprices.appspot.com",
-    messagingSenderId: "148686257825",
-    appId: "1:148686257825:web:59b9c7ff26690658ecfae0",
-    measurementId: "G-TTKC4ESDYY"
-};
+function generateProductCards() {
+    const productContainer = document.getElementById('product-container');
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const storage = getStorage(app);
+    images.forEach(image => {
+        // Split the filename into parts
+        const parts = image.split('-');
+        const name = parts[0];
+        const price = parts[1];
+        const number = parts[2].split('.')[0];
 
-// References
-const productForm = document.getElementById('productForm');
-const productList = document.getElementById('productList');
-const productsCollection = collection(db, 'products');
-
-// Add/Edit Product
-productForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const name = document.getElementById('productName').value;
-    const price = parseFloat(document.getElementById('productPrice').value);
-    const description = document.getElementById('productDescription').value;
-    const imageFile = document.getElementById('productImage').files[0];
-
-    if (imageFile) {
-        const storageRef = ref(storage, 'images/' + imageFile.name);
-        await uploadBytes(storageRef, imageFile);
-        const imageUrl = await getDownloadURL(storageRef);
-
-        await addDoc(productsCollection, {
-            name,
-            price,
-            description,
-            imageUrl
-        });
-    }
-    productForm.reset();
-});
-
-// Display Products
-onSnapshot(productsCollection, (snapshot) => {
-    productList.innerHTML = '';
-    snapshot.forEach(async (doc) => {
-        const data = doc.data();
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <h3>${data.name}</h3>
-            <img src="${data.imageUrl}" alt="${data.name}" width="100">
-            <p>${data.description}</p>
-            <p>$${data.price.toFixed(2)}</p>
-            <button onclick="deleteProduct('${doc.id}')">Delete</button>
+        // Create the HTML for the product card
+        const productCard = `
+            <div class="product-card">
+                <img src="images/${image}" alt="Product ${number}">
+                <h2>${name}</h2>
+                <p>$${price}</p>
+                <button onclick="addToCart('${name}', ${price})">Add to Cart</button>
+            </div>
         `;
-        productList.appendChild(li);
-    });
-});
 
-async function deleteProduct(id) {
-    await deleteDoc(doc(db, 'products', id));
+        // Append the product card to the container
+        productContainer.innerHTML += productCard;
+    });
 }
+
+// Call the function to generate the product cards
+generateProductCards();
 
