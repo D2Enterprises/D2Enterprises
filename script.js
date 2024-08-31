@@ -5,6 +5,20 @@ window.addEventListener('scroll', function() {
 
     hero.style.backgroundPositionY = -scrollPosition / 2 + 'px';
 });
+function addToCart(productName, productPrice) {
+    cart.push({ name: productName, price: productPrice, quantity: 1 });
+    displayCart();
+    
+    const notification = document.getElementById('notification');
+    notification.innerHTML = `Product '${productName}' has been added to your cart.`;
+    notification.classList.add('show');
+    notification.style.transform = 'translateY(0)';
+    
+    setTimeout(() => {
+        notification.style.transform = 'translateY(-100%)';
+    }, 3000); // Slide out after 3 seconds
+}
+
 if (!name || !address || !phone) {
     alert("Please complete all fields.");
     return;
