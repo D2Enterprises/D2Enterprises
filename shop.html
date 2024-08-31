@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop -D2Enterprises</title>
+    <title>Shop - D2Enterprises</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="icon" href="images/logo.png" type="image/png">
 </head>
 <body>
     <div id="product-container"></div>
@@ -13,7 +13,7 @@
     <div class="wrapper">
         <header>
             <div class="logo">
-                <img src="logo.png" alt="Your Brand Logo" class="logo-img">
+                <img src="images/logo.png" alt="Your Brand Logo" class="logo-img">
                 D2Enterprises
             </div>
             <nav>
@@ -23,68 +23,68 @@
                 </ul>
             </nav>
             <div class="cart">
-                <a href="#" class="cart-icon" onclick="toggleCart()"><img src="cart.png" alt="Cart"></a>
+                <a href="#" class="cart-icon" onclick="toggleCart()"><img src="images/cart.png" alt="Cart"></a>
             </div>
         </header>
         <main>
             <section class="products">
                 <div class="product-card">
-                    <img src=download.jpg alt="Product 1">
+                    <img src="images/download.jpg" alt="Product 1">
                     <h2>Product 1</h2>
                     <p>$99.99</p>
                     <button onclick="addToCart('Product 1', 99.99)">Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="product2.jpg" alt="Product 2">
+                    <img src="images/product2.jpg" alt="Product 2">
                     <h2>Product 2</h2>
                     <p>$89.99</p>
                     <button onclick="addToCart('Product 2', 89.99)">Add to Cart</button>
                 </div>
                 <!-- Additional products -->
                 <div class="product-card">
-                    <img src="product3.jpg" alt="Product 3">
+                    <img src="images/product3.jpg" alt="Product 3">
                     <h2>Product 3</h2>
                     <p>$79.99</p>
                     <button onclick="addToCart('Product 3', 79.99)">Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="product4.jpg" alt="Product 4">
+                    <img src="images/product4.jpg" alt="Product 4">
                     <h2>Product 4</h2>
                     <p>$49.99</p>
                     <button onclick="addToCart('Product 4', 49.99)">Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="product5.jpg" alt="Product 5">
+                    <img src="images/product5.jpg" alt="Product 5">
                     <h2>Product 5</h2>
                     <p>$39.99</p>
                     <button onclick="addToCart('Product 5', 39.99)">Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="product6.jpg" alt="Product 6">
+                    <img src="images/product6.jpg" alt="Product 6">
                     <h2>Product 6</h2>
                     <p>$29.99</p>
                     <button onclick="addToCart('Product 6', 29.99)">Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="product7.jpg" alt="Product 7">
+                    <img src="images/product7.jpg" alt="Product 7">
                     <h2>Product 7</h2>
                     <p>$19.99</p>
                     <button onclick="addToCart('Product 7', 19.99)">Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="product8.jpg" alt="Product 8">
+                    <img src="images/product8.jpg" alt="Product 8">
                     <h2>Product 8</h2>
                     <p>$59.99</p>
                     <button onclick="addToCart('Product 8', 59.99)">Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="product9.jpg" alt="Product 9">
+                    <img src="images/product9.jpg" alt="Product 9">
                     <h2>Product 9</h2>
                     <p>$69.99</p>
                     <button onclick="addToCart('Product 9', 69.99)">Add to Cart</button>
                 </div>
                 <div class="product-card">
-                    <img src="product10.jpg" alt="Product 10">
+                    <img src="images/product10.jpg" alt="Product 10">
                     <h2>Product 10</h2>
                     <p>$89.99</p>
                     <button onclick="addToCart('Product 10', 89.99)">Add to Cart</button>
@@ -94,7 +94,7 @@
         </main>
         <footer>
             <div class="footer-content">
-                <img src="logo.png" alt="Your Brand Logo" class="footer-logo">
+                <img src="images/logo.png" alt="Your Brand Logo" class="footer-logo">
                 <div class="footer-columns">
                     <div class="footer-column">
                         <h3>Company</h3>
@@ -118,7 +118,7 @@
             </div>
         </footer>
         <a href="https://api.whatsapp.com/send?phone=9042931398&text=" class="whatsapp-float" target="_blank">
-            <img src="whatsapp.png" alt="WhatsApp">
+            <img src="images/whatsapp.png" alt="WhatsApp">
         </a>
         <!-- Sidebar Cart -->
         <div id="cart-sidebar" class="cart-sidebar">
@@ -184,7 +184,7 @@
                 const div = document.createElement('div');
                 div.className = 'cart-item';
                 div.innerHTML = `
-                    <img src="product-image.jpg" alt="${item.name}" class="cart-item-img">
+                    <img src="images/product-image.jpg" alt="${item.name}" class="cart-item-img">
                     <div class="cart-item-details">
                         <h3>${item.name}</h3>
                         <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
