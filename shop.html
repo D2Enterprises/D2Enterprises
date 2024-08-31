@@ -9,217 +9,56 @@
 </head>
 <body>
     <div id="product-container"></div>
-    <script src="script.js"></script>
-    <div class="wrapper">
-        <header>
-            <div class="logo">
-                <img src="images/logo.png" alt="Your Brand Logo" class="logo-img">
-                D2Enterprises
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                </ul>
-            </nav>
-            <div class="cart">
-                <a href="#" class="cart-icon" onclick="toggleCart()"><img src="images/cart.png" alt="Cart"></a>
-            </div>
-        </header>
-        <main>
-            <section class="products">
-                <div class="product-card">
-                    <img src="images/download.jpg" alt="Product 1">
-                    <h2>Product 1</h2>
-                    <p>$99.99</p>
-                    <button onclick="addToCart('Product 1', 99.99)">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="images/product2.jpg" alt="Product 2">
-                    <h2>Product 2</h2>
-                    <p>$89.99</p>
-                    <button onclick="addToCart('Product 2', 89.99)">Add to Cart</button>
-                </div>
-                <!-- Additional products -->
-                <div class="product-card">
-                    <img src="images/product3.jpg" alt="Product 3">
-                    <h2>Product 3</h2>
-                    <p>$79.99</p>
-                    <button onclick="addToCart('Product 3', 79.99)">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="images/product4.jpg" alt="Product 4">
-                    <h2>Product 4</h2>
-                    <p>$49.99</p>
-                    <button onclick="addToCart('Product 4', 49.99)">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="images/product5.jpg" alt="Product 5">
-                    <h2>Product 5</h2>
-                    <p>$39.99</p>
-                    <button onclick="addToCart('Product 5', 39.99)">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="images/product6.jpg" alt="Product 6">
-                    <h2>Product 6</h2>
-                    <p>$29.99</p>
-                    <button onclick="addToCart('Product 6', 29.99)">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="images/product7.jpg" alt="Product 7">
-                    <h2>Product 7</h2>
-                    <p>$19.99</p>
-                    <button onclick="addToCart('Product 7', 19.99)">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="images/product8.jpg" alt="Product 8">
-                    <h2>Product 8</h2>
-                    <p>$59.99</p>
-                    <button onclick="addToCart('Product 8', 59.99)">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="images/product9.jpg" alt="Product 9">
-                    <h2>Product 9</h2>
-                    <p>$69.99</p>
-                    <button onclick="addToCart('Product 9', 69.99)">Add to Cart</button>
-                </div>
-                <div class="product-card">
-                    <img src="images/product10.jpg" alt="Product 10">
-                    <h2>Product 10</h2>
-                    <p>$89.99</p>
-                    <button onclick="addToCart('Product 10', 89.99)">Add to Cart</button>
-                </div>
-                <!-- Repeat product-card for other products -->
-            </section>
-        </main>
-        <footer>
-            <div class="footer-content">
-                <img src="images/logo.png" alt="Your Brand Logo" class="footer-logo">
-                <div class="footer-columns">
-                    <div class="footer-column">
-                        <h3>Company</h3>
-                        <ul>
-                            <li><a href="#">We Are D2Enterprise</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Legal</h3>
-                        <ul>
-                            <li><a href="#">Our Vision and Mission</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h3>Resources</h3>
-                        <ul>
-                            <li><a href="#">Shipping & Returns Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <a href="https://api.whatsapp.com/send?phone=9042931398&text=" class="whatsapp-float" target="_blank">
-            <img src="images/whatsapp.png" alt="WhatsApp">
-        </a>
-        <!-- Sidebar Cart -->
-        <div id="cart-sidebar" class="cart-sidebar">
-            <button class="close-btn" onclick="closeCart()">X</button>
-            <h2>Your Cart</h2>
-            <div id="cart-items"></div>
-            <button id="buy-now" onclick="buyNow()">Buy Now</button>
-        </div>
-        <!-- Notification -->
-        <div id="notification" class="notification"></div>
-    </div>
+
     <script>
-        // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyC_7Fi3aMsOgKWFRaRtZbSlOAmCl6NSATc",
-        authDomain: "d2enterprices.firebaseapp.com",
-        databaseURL: "https://d2enterprices-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "d2enterprices",
-        storageBucket: "d2enterprices.appspot.com",
-        messagingSenderId: "148686257825",
-        appId: "1:148686257825:web:59b9c7ff26690658ecfae0",
-        measurementId: "G-TTKC4ESDYY"
-      };
+    async function fetchImagesFromGitHub() {
+    const repoOwner = 'D2Enterprises';
+    const repoName = 'D2Enterprises';
+    const folderPath = 'images/products/';
+    const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`;
 
-      // Initialize Firebase
-      const app = firebase.initializeApp(firebaseConfig);
-      const db = firebase.firestore(app);
-      const storage = firebase.storage(app);
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
 
-      // Add your JavaScript code for Firebase here
-        let cart = [];
+        if (Array.isArray(data)) {
+            const productContainer = document.getElementById('product-container');
 
-        function addToCart(productName, productPrice) {
-            cart.push({ name: productName, price: productPrice, quantity: 1 });
-            displayCart();
-            
-            const notification = document.getElementById('notification');
-            notification.innerHTML = `Product '${productName}' has been added to your cart.`;
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000); // Hide after 3 seconds
-        }
+            data.forEach(file => {
+                if (file.type === 'file' && file.name.endsWith('.jpg')) {
+                    const fileName = file.name;
+                    const [name, price, number] = fileName.split('-');
+                    const formattedPrice = parseFloat(price.split('.')[0]).toFixed(2);
 
-        function updateQuantity(index, quantity) {
-            cart[index].quantity = quantity;
-            displayCart();
-        }
+                    // Create the HTML for the product card
+                    const productCard = `
+                        <div class="product-card">
+                            <img src="${file.download_url}" alt="${name}">
+                            <h2>${name}</h2>
+                            <p>$${formattedPrice}</p>
+                            <button onclick="addToCart('${name}', ${formattedPrice})">Add to Cart</button>
+                        </div>
+                    `;
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            displayCart();
-        }
-
-        function displayCart() {
-            const cartContainer = document.getElementById('cart-items');
-            const subtotalElem = document.getElementById('subtotal');
-            cartContainer.innerHTML = '';
-            let subtotal = 0;
-            cart.forEach((item, index) => {
-                subtotal += item.price * item.quantity;
-                const div = document.createElement('div');
-                div.className = 'cart-item';
-                div.innerHTML = `
-                    <img src="images/product-image.jpg" alt="${item.name}" class="cart-item-img">
-                    <div class="cart-item-details">
-                        <h3>${item.name}</h3>
-                        <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
-                        <input type="number" value="${item.quantity}" min="1" class="quantity-input" onchange="updateQuantity(${index}, this.value)">
-                        <button onclick="removeFromCart(${index})">Remove</button>
-                    </div>
-                `;
-                cartContainer.appendChild(div);
+                    // Append the product card to the container
+                    productContainer.innerHTML += productCard;
+                }
             });
-            subtotalElem.textContent = subtotal.toFixed(2);
+        }
+    } catch (error) {
+        console.error('Error fetching images:', error);
+    }
+}
+
+
+        // Placeholder for addToCart function
+        function addToCart(productName, productPrice) {
+            console.log(`Added ${productName} to the cart at $${productPrice}`);
+            // Add your addToCart implementation here
         }
 
-        function buyNow() {
-            const name = prompt('Enter your name:');
-            const address = prompt('Enter your address:');
-            const phone = prompt('Enter your phone number:');
-            if (name && address && phone) {
-                const productDetails = cart.map(item => `${item.name} (${item.quantity} x $${item.price})`).join(', ');
-                const message = `Name: ${name}\nAddress: ${address}\nPhone: ${phone}\nProducts: ${productDetails}`;
-                const whatsappUrl = `https://api.whatsapp.com/send?phone=+919042931398&text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, '_blank');
-                cart = []; // Clear cart after purchase
-                displayCart();
-            }
-        }
-
-        function toggleCart() {
-            const sidebar = document.getElementById('cart-sidebar');
-            sidebar.classList.toggle('show');
-        }
-
-        function closeCart() {
-            const sidebar = document.getElementById('cart-sidebar');
-            sidebar.classList.remove('show');
-        }
+        // Call the function to fetch images and generate product cards
+        fetchImagesFromGitHub();
     </script>
 </body>
 </html>
