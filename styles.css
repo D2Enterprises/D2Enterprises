@@ -520,3 +520,32 @@ footer {
         max-width: 400px;
     }
 }
+/*fire base */
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #f4f4f4;
+    padding: 10px;
+    text-align: center;
+}
+
+form {
+    margin: 20px;
+}
+
+input, textarea, button {
+    display: block;
+    margin: 10px 0;
+}
+
+#products ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#products li {
+    margin-bottom: 20px;
+}
+
